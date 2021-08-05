@@ -1,2 +1,4 @@
+pwd
+
 echo $PWD
 
