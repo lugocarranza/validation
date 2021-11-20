@@ -1,0 +1,47 @@
+--PREVIOS
+-- 0.80.0
+wget https://github.com/gohugoio/hugo/releases/download/v0.80.0/hugo_extended_0.80.0_Linux-64bit.deb
+sudo dpkg -i hugo_extended_0.80.0_Linux-64bit.deb
+sudo hugo version
+
+
+hugo new site "module1_task1"
+--download theme (gohugo-theme-ananke-master.zip)
+--descomprimir ananke dentro de la carpeta themes
+--concatenamos el tema en el acrhivo de configuración
+echo theme = \"ananke\" >> config.toml
+
+
+--configuramo ruta de publicación
+echo public = \"ananke\" >> config.toml
+echo publishdir = \"dist/\"
+
+--crear post previo
+hugo new posts/welcome.md
+
+--descargamos librerías para utilizar MAKE
+sudo apt install make
+
+--creamos archivo Makefile, dentro de la ruta module1_task1
+el contenido del archivo será:
+	
+	build : 
+		hugo -D > /dev/null 2>&1
+
+	clean :
+		rm -rf ./dist/ > /dev/null 2>&1
+
+	post:
+		hugo new post/$(POST_NAME).md
+		echo 'title: "$(POST_NAME)"' > ./content/posts/$(POST_NAME).md
+
+--/dev/null 2>&1 : es igual a omitir la escritura del resultado
+
+
+--Ejecutamos comando MAKE
+make build
+--
+make clean
+--
+make POST_NAME=who-are-we POST_TITLE:"Who are we" post
+

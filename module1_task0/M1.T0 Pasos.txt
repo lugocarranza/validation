@@ -1,0 +1,21 @@
+--PREVIOS
+-- 0.80.0
+wget https://github.com/gohugoio/hugo/releases/download/v0.80.0/hugo_extended_0.80.0_Linux-64bit.deb
+sudo dpkg -i hugo_extended_0.80.0_Linux-64bit.deb
+sudo hugo version
+
+
+hugo new site "task0_module1"
+--download theme (gohugo-theme-ananke-master.zip)
+--descomprimir ananke dentro de la carpeta themes
+--concatenamos el tema en el acrhivo de configuración
+echo theme = \"ananke\" >> config.toml
+
+--crear  post
+--Ingresamos a "Awesome Inc."
+hugo new posts/welcome.md
+
+--publica en una ruta específica
+hugo -d dist
+
+hugo server -D
